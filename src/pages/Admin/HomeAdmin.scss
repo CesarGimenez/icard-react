@@ -1,0 +1,17 @@
+.admin {
+  width: 100%;
+  display: grid;
+  grid: 55px/ 1fr;
+  grid-template-areas:
+    "menu"
+    "content";
+  min-height: 100vh;
+
+  &__menu {
+    grid-area: menu;
+  }
+
+  &__main_content {
+    grid-area: content;
+  }
+}

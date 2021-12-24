@@ -1,0 +1,20 @@
+.top-menu-admin {
+  &__logo {
+    width: 250px;
+    background-color: #c4c4c4 !important;
+  }
+  i.icon {
+    margin: 0 !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .top-menu-admin {
+    &__logo {
+      display: none !important;
+    }
+    i.icon {
+      margin: 0 !important;
+    }
+  }
+}
