@@ -90,7 +90,12 @@ export const AddEditProduct = ({
         error={formik.errors.category}
         onChange={(_, data) => formik.setFieldValue("category", data.value)}
       />
-      <Form.TextArea name="description" placeholder="Descripcion breve" />
+      <Form.TextArea
+        name="description"
+        placeholder="Descripcion breve"
+        value={formik.values.description}
+        onChange={formik.handleChange}
+      />
 
       <div className="add-edit-product-form__active">
         <Checkbox

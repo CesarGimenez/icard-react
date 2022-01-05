@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Loader } from "semantic-ui-react";
+import { size } from "lodash";
+import { getOrdersByTableApi } from "../../../api/order";
 import { ConfirmBasic } from "../../../components/Common/Confirm/Confirm";
 import { ModalBasic } from "../../../components/Common/ModalBasic/ModalBasic";
 import { HeaderPage } from "../../../components/HeaderPage/HeaderPage";
@@ -52,10 +54,18 @@ export const Tables = () => {
 
   const onDeleteTable = async (data) => {
     try {
-      await deleteTables(data);
-      onRefetch();
-      setConfirmState(false);
-      toast.info("Mesa eliminada");
+      const response = await getOrdersByTableApi(data, "", "");
+      console.log(size(response));
+      if (size(response) === 0) {
+        await deleteTables(data);
+        onRefetch();
+        setConfirmState(false);
+        toast.info("Mesa eliminada");
+      } else {
+        toast.error(
+          "La mesa no puede ser eliminada ya que posee pedidos pendientes"
+        );
+      }
     } catch (error) {
       throw error;
     }

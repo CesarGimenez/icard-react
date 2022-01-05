@@ -14,6 +14,7 @@ export const TableProductAdmin = ({ products, updateProduct, showConfirm }) => {
           <Table.HeaderCell>Nombre</Table.HeaderCell>
           <Table.HeaderCell>Precio</Table.HeaderCell>
           <Table.HeaderCell>Categoria</Table.HeaderCell>
+          <Table.HeaderCell>Descripcion</Table.HeaderCell>
           <Table.HeaderCell>Activo</Table.HeaderCell>
           <Table.HeaderCell></Table.HeaderCell>
         </Table.Row>
@@ -30,6 +31,7 @@ export const TableProductAdmin = ({ products, updateProduct, showConfirm }) => {
             <Table.Cell>
               {product.category_data?.title || "Sin categoria"}
             </Table.Cell>
+            <Table.Cell>{product.description || "Sin descripcion"}</Table.Cell>
             <Table.Cell>
               {product.active ? <Icon name="check" /> : <Icon name="close" />}
             </Table.Cell>

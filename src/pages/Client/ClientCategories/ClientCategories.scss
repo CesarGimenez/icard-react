@@ -1,0 +1,27 @@
+.client-layout-bg {
+  background-color: #d9d9d9;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 1em 0;
+}
+
+.client-layout {
+  background-color: #ffff;
+  padding: 10px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .ui.label {
+      position: absolute;
+      padding: 5px;
+      transform: translate(-10px, -20px);
+      font-size: 12px;
+      font-weight: bold;
+      color: #ffff;
+    }
+  }
+}

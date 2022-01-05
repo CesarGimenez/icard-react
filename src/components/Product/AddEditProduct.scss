@@ -1,4 +1,7 @@
 .add-edit-product-form {
+  max-height: 500px !important;
+  overflow-y: auto;
+
   &__active {
     display: flex;
     align-items: center;

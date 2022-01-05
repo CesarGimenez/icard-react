@@ -1,4 +1,7 @@
 .payment-product-list {
+  max-height: 500px !important;
+  overflow-y: auto;
+
   &__product {
     display: flex;
     align-items: center;

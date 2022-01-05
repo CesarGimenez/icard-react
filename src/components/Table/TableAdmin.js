@@ -11,7 +11,6 @@ import "./TableAdmin.scss";
 import { getPaymentByTableApi } from "../../api/payment";
 
 export const TableAdmin = ({ table, reload }) => {
-  const {} = usePayment();
   const [orders, setOrders] = useState(null);
   const [tableBusy, setTableBusy] = useState(null);
   const [pendingPayment, setPendingPayment] = useState(null);

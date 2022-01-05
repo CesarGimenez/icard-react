@@ -5,6 +5,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 export const TableTablesAdmin = ({ tables, updateTable, showConfirm }) => {
   const { auth } = useAuth();
+
   return (
     <Table>
       <Table.Header>

@@ -1,4 +1,7 @@
 .add-edit-category-form {
+  max-height: 500px !important;
+  overflow-y: auto;
+
   .ui.primary.button {
     margin-top: 50px;
   }

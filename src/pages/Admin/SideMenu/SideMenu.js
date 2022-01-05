@@ -10,6 +10,7 @@ import { Tables } from "../Tables/Tables";
 import { Orders } from "../Orders/Orders";
 import { TableDetailsAdmin } from "../Tables/TableDetailsAdmin";
 import { PaymentsHistory } from "../Payments/PaymentsHistory";
+import { Error404 } from "../../Error404";
 
 export const SideMenu = () => {
   const { pathname } = useLocation();
@@ -57,13 +58,15 @@ export const SideMenu = () => {
               <Icon name="users" /> Usuarios
             </Menu.Item>
           )}
-          <Menu.Item
-            as={Link}
-            to={"/admin/payments"}
-            active={pathname === "/admin/payments"}
-          >
-            <Icon name="history" /> Historial de pagos
-          </Menu.Item>
+          {auth.me?.is_staff && (
+            <Menu.Item
+              as={Link}
+              to={"/admin/payments"}
+              active={pathname === "/admin/payments"}
+            >
+              <Icon name="history" /> Historial de pagos
+            </Menu.Item>
+          )}
         </Menu>
         <div className="content">
           <Routes>
@@ -74,6 +77,7 @@ export const SideMenu = () => {
             <Route path="payments" element={<PaymentsHistory />} />
             <Route path="" element={<Orders />} />
             <Route path="tables/:id" element={<TableDetailsAdmin />} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </div>
       </div>
@@ -117,13 +121,15 @@ export const SideMenu = () => {
               <Icon name="users" />
             </Menu.Item>
           )}
-          <Menu.Item
-            as={Link}
-            to={"/admin/payments"}
-            active={pathname === "/admin/payments"}
-          >
-            <Icon name="history" />
-          </Menu.Item>
+          {auth.me?.is_staff && (
+            <Menu.Item
+              as={Link}
+              to={"/admin/payments"}
+              active={pathname === "/admin/payments"}
+            >
+              <Icon name="history" />
+            </Menu.Item>
+          )}
         </Menu>
       </div>
     </div>

@@ -36,7 +36,6 @@ export const TableDetailsAdmin = () => {
     (async () => {
       const response = await getPaymentByTable(id);
       if (response.length > 0) setPaymentData(response);
-      console.log(response);
     })();
   }, [reload]);
 
@@ -71,6 +70,10 @@ export const TableDetailsAdmin = () => {
     );
     setShowConfirm(true);
   };
+
+  const cleanPayment = () => {
+    setPaymentData(null);
+  };
   return (
     <div>
       <HeaderPage
@@ -96,6 +99,7 @@ export const TableDetailsAdmin = () => {
               orders={orders}
               openCloseModal={openCloseModal}
               onReload={onReload}
+              cleanPayment={cleanPayment}
             />
           ) : (
             <AddOrderForm

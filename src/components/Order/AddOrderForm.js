@@ -12,10 +12,16 @@ export const AddOrderForm = ({ idTable, openCloseModal, onReload }) => {
   const [formatProducts, setFormatProducts] = useState(null);
   const [productsData, setProductsData] = useState([]);
   const { addOrderToTable } = useOrder();
+
+  const productsActive = products?.filter((product) => product.active === true);
+  console.log(products);
   useEffect(() => {
     getProducts();
   }, []);
-  useEffect(() => setFormatProducts(formatDropdownData(products)), [products]);
+  useEffect(
+    () => setFormatProducts(formatDropdownData(productsActive)),
+    [products]
+  );
 
   const formik = useFormik({
     initialValues: initialValues(),

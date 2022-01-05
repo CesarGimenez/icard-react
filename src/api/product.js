@@ -90,3 +90,14 @@ export const getProductApi = async (id) => {
     throw error;
   }
 };
+
+export const getProductByCategoryApi = async (idcategory) => {
+  try {
+    const url = `${BASE_API}/api/products/?category=${idcategory}`;
+    const response = await fetch(url);
+    const result = response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -3,7 +3,7 @@ import { HeaderPage } from "../../../components/HeaderPage/HeaderPage";
 import { useAuth } from "../../../hooks/useAuth";
 import { TableProductAdmin } from "../../../components/Product/TableProductAdmin";
 import { useProducts } from "../../../hooks/useProducts";
-import { Loader } from "semantic-ui-react";
+import { Loader, Search } from "semantic-ui-react";
 import { toast } from "react-toastify";
 import "./Products.scss";
 import { ModalBasic } from "../../../components/Common/ModalBasic/ModalBasic";
@@ -21,6 +21,7 @@ export const Products = () => {
   const [confirmState, setConfirmState] = useState(false);
   const [titleConfirm, setTitleConfirm] = useState(null);
   const [productDeleted, setProductDeleted] = useState(null);
+  const [search, setSearch] = useState("");
 
   useEffect(() => getProducts(), [refetch]);
 
@@ -60,6 +61,12 @@ export const Products = () => {
     setConfirmState(false);
     toast.info("Producto eliminado");
   };
+
+  const productsFiltered = products?.filter((product) => {
+    if (search === "") return product;
+    else if (product.title.toLowerCase().includes(search.toLowerCase()))
+      return product;
+  });
   return (
     <div>
       <HeaderPage
@@ -67,13 +74,21 @@ export const Products = () => {
         btnTitle={auth.me.is_staff ? "Nuevo producto" : null}
         btnClick={addProduct}
       />
+      <Search
+        aligned="right"
+        loading={loading}
+        onSearchChange={(e) => setSearch(e.target.value)}
+        results={productsFiltered}
+        value={search}
+        placeholder="Buscar por nombre"
+      />
       {loading ? (
         <Loader active inline="centered">
           Cargando..
         </Loader>
       ) : (
         <TableProductAdmin
-          products={products}
+          products={productsFiltered}
           updateProduct={updateProduct}
           showConfirm={showConfirm}
         />

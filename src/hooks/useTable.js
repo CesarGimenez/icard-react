@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { size } from "lodash";
 import {
   getTablesApi,
   addTableApi,
@@ -6,6 +7,7 @@ import {
   deleteTableApi,
   getTablesByWaiterApi,
   getTableApi,
+  getTableByNumberApi,
 } from "../api/table";
 import { useAuth } from "./useAuth";
 
@@ -85,6 +87,25 @@ export const useTable = () => {
     }
   };
 
+  const getTableByNumber = async (number) => {
+    try {
+      const response = await getTableByNumberApi(number);
+      if (size(response) === 0) throw Error();
+      return true;
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  const getTableByNumberTow = async (number) => {
+    try {
+      const response = await getTableByNumberApi(number);
+      return response;
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   return {
     loading,
     error,
@@ -96,5 +117,7 @@ export const useTable = () => {
     getTablesByWaiter,
     table,
     getTable,
+    getTableByNumber,
+    getTableByNumberTow,
   };
 };

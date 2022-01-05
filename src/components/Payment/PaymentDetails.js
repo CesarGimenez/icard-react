@@ -8,6 +8,7 @@ export const PaymentDetails = ({
   orders,
   openCloseModal,
   onReload,
+  cleanPayment,
 }) => {
   const { closePayment } = usePayment();
   const { closeOrder } = useOrder();
@@ -23,6 +24,7 @@ export const PaymentDetails = ({
       await closeOrder(order.id);
     }
     onReload();
+    cleanPayment();
     openCloseModal();
   };
 
